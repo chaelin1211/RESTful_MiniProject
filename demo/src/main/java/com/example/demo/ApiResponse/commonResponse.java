@@ -2,8 +2,7 @@ package com.example.demo.ApiResponse;
 
 import java.util.List;
 
-import lombok.RequiredArgsConstructor;
-
+import lombok.*;
 // 여러 모델에 동시에 삽입될 에러 메시지를 위한 클래스
 
 @Getter @Setter
