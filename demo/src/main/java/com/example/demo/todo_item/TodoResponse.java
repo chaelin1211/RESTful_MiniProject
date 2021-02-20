@@ -9,6 +9,6 @@ public class TodoResponse extends commonResponse<TodoBean> {
     @Builder
     public TodoResponse(final TodoBean todoBean, final List<String> errors){
         super(todoBean);
-        this.setErrores(errors);
+        this.setErrors(errors);
     }    
 }

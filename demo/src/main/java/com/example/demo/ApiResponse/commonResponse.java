@@ -9,5 +9,5 @@ import lombok.*;
 @RequiredArgsConstructor
 public abstract class commonResponse<T> {
     @NonNull private T data;
-    private List<String> errores;
+    private List<String> errors;
 }
