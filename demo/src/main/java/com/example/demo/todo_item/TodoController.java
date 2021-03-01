@@ -8,6 +8,10 @@ import lombok.Getter;
 
 import java.util.List;
 import java.util.ArrayList;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Getter @Setter
 @RestController
@@ -27,4 +31,32 @@ public class TodoController {
         }
         return TodoAdapter.toTodoResponse(todoBean, errors);
     }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody List<TodoResponse> getAll(){
+        List<String> errors = new ArrayList<>();
+        List<TodoBean> todoBeans = todoService.getAll();
+        List<TodoResponse> todoResponses = new ArrayList<TodoResponse>();
+
+        todoBeans.stream().forEach(todoBean->{
+            // todobean 각각을 adapter를 통해 response로 만들어 저장
+            todoResponses.add(TodoAdapter.toTodoResponse(todoBean, errors));
+        });
+        return todoResponses;
+    }
+
+    @RequestMapping(method=RequestMethod.POST)
+    public @ResponseBody TodoResponse create(@RequestBody final TodoRequest todoRequest){
+        List<String> errors = new ArrayList<>();
+        TodoBean todoBean = TodoAdapter.toTodoBean(todoRequest);
+        System.out.println(todoRequest.getTitle());
+        try{
+            todoBean = todoService.create(todoBean);
+        }catch(final Exception e){
+            errors.add(e.getMessage());
+            e.printStackTrace();
+        }
+        return TodoAdapter.toTodoResponse(todoBean, errors);
+    }
+    
 }
