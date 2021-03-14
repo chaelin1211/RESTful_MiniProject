@@ -18,4 +18,4 @@ ARG JAR_FILE=demo/target/*.jar
 ADD ${JAR_FILE} restful_springboot.jar
 
 # Run the jar file
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/restful_springboot.jar","demo.DemoApplication"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/restful_springboot.jar"]
