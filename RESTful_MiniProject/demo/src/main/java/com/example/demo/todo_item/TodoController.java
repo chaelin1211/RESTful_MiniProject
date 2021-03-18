@@ -7,6 +7,9 @@ import lombok.Setter;
 import lombok.Getter;
 
 import java.util.List;
+
+import javax.management.RuntimeErrorException;
+
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,7 +51,6 @@ public class TodoController {
     public @ResponseBody TodoResponse create(@RequestBody final TodoRequest todoRequest){
         List<String> errors = new ArrayList<>();
         TodoBean todoBean = TodoAdapter.toTodoBean(todoRequest);
-        System.out.println(todoRequest.getTitle());
         try{
             todoBean = todoService.create(todoBean);
         }catch(final Exception e){
@@ -58,4 +60,16 @@ public class TodoController {
         return TodoAdapter.toTodoResponse(todoBean, errors);
     }
     
+    @RequestMapping(method=RequestMethod.PUT)
+    public @ResponseBody TodoResponse update(@RequestBody final TodoRequest todoRequest){
+        List<String> errors = new ArrayList<>();
+        TodoBean todoBean = TodoAdapter.toTodoBean(todoRequest);
+        try{
+            todoBean = todoService.update(todoBean);
+        }catch(final Exception e){
+            errors.add(e.getMessage());
+            e.printStackTrace();
+        }
+        return TodoAdapter.toTodoResponse(todoBean, errors);
+    }
 }
