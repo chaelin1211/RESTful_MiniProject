@@ -14,6 +14,7 @@ public class TodoAdapter {
             return null;
         }
         return  TodoBean.builder()
+            .id(todoRequest.getId())
             .title(todoRequest.getTitle())
             .done(todoRequest.isDone())
             .build();
