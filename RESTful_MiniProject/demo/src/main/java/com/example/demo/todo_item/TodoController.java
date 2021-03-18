@@ -72,4 +72,17 @@ public class TodoController {
         }
         return TodoAdapter.toTodoResponse(todoBean, errors);
     }
+
+    @RequestMapping(method=RequestMethod.DELETE)
+    public @ResponseBody TodoResponse delete(@RequestBody final TodoRequest todoRequest){
+        List<String> errors = new ArrayList<>();
+        TodoBean todoBean = TodoAdapter.toTodoBean(todoRequest);
+        try{
+            todoBean = todoService.delete(todoBean);
+        }catch(final Exception e){
+            errors.add(e.getMessage());
+            e.printStackTrace();
+        }
+        return TodoAdapter.toTodoResponse(todoBean, errors);
+    }
 }

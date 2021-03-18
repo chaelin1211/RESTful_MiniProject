@@ -38,4 +38,13 @@ public class TodoService {
         
         return todoRepository.save(original);
     }
+    public TodoBean delete(final TodoBean todoBean){
+        if (todoBean == null) {
+            throw new NullPointerException("To Do Bean cannot be null");
+        }
+        final TodoBean original = todoRepository.findById(todoBean.getId())
+                .orElseThrow(() -> new RuntimeException("Entity Not Found"));
+        todoRepository.delete(original);
+        return original;
+    }
 }
