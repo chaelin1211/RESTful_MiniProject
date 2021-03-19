@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import { BrowserRouter as Router, Route } from 'react-router-dom';
-import TodoList from './components/TodoList';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <TodoList>
-  </TodoList>
-  ,
+  <App></App>,
   document.getElementById('root')
 );
 

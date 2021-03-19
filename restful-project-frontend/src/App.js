@@ -1,9 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import TodoTemplate from './components/TodoTemplate';
+import TodoList from './components/TodoList';
 function App() {
   return (
-    <p>hi there</p>
+    <TodoTemplate>
+      <TodoList>
+
+      </TodoList>
+    </TodoTemplate>
   );
 }
 
