@@ -9,6 +9,9 @@ export default class TodoListRow extends Component{
       return (
           <tr>
             <td>
+              
+            </td>
+            <td>
                 {this.props.obj.data.title}
             </td>
           </tr>
