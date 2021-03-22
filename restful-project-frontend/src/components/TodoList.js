@@ -1,28 +1,25 @@
-
 import React, { Component } from 'react';
 import TodoListRow from './TodoListRow';
 import TodoService from './TodoService';
+import TodoInput from './TodoInput';
 
 export default class TodoList extends Component {
     constructor(props) {
         super(props);
         this.todoService = new TodoService();
         this.state = { todoList: [] };
+        this.initList();
     }
 
-    componentWillMount() {
-        this.getTodoList();
-    }
-
-    componentDidUpdate() {
-        this.getTodoList();
-        return true;
-    }
-
-    getTodoList() {
+    initList() {
         this.todoService.getAll((data) => {
-            this.setState({ todoList: data });
-        })
+            this.setState({ todoList: data })
+        });
+    }
+
+    addTodoList(response) {
+        this.setState({ todoList: this.state.todoList.concat(response) }
+            , console.log(response.data));
     }
 
     setTodoList() {
@@ -35,8 +32,11 @@ export default class TodoList extends Component {
 
     render() {
         return (
-            <div className="todoList">
-                {this.setTodoList()}
+            <div>
+                <TodoInput todoList={this}></TodoInput>
+                <div className="todoList">
+                    {this.setTodoList()}
+                </div>
             </div>
         )
     }
