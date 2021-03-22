@@ -33,21 +33,7 @@ export default class TodoList extends Component {
     render() {
         return (
             <div className="todoList">
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                Done
-                        </th>
-                            <th>
-                                TodoList
-                        </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.setTodoList()}
-                    </tbody>
-                </table>
+                {this.setTodoList()}
             </div>
         )
     }
