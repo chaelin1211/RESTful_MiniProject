@@ -1,5 +1,4 @@
 import axios from 'axios';
-import TodoList from './TodoList';
 
 export default class TodoService {
     getAll(callback) {
@@ -9,11 +8,11 @@ export default class TodoService {
                 console.log(e);
             });
     }
-    post(data) {
+    post(requsest, callback) {
         const url = 'http://localhost:8080/todo';
-        axios.post(url, data)
-        .catch(function (error) {
-            console.log(error);
-        });
+        axios.post(url, requsest).then((response) => callback(response.data))
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 }
