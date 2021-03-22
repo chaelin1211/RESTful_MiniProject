@@ -12,7 +12,7 @@ export default class TodoListRow extends Component{
               
             </td>
             <td>
-                {this.props.obj.data.title}
+                {this.props.item.title}
             </td>
           </tr>
       );
