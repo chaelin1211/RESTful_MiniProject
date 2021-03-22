@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import TodoService from './TodoService';
-import TodoList from './TodoList';
 
 export default class TodoInput extends Component {
     constructor(props) {
         super(props);
         this.todoService = new TodoService();
-        this.state={title: '', todoList: new TodoList()};
+        this.state = { title: '' };
     }
 
-    handleChange(event){
+    handleChange(event) {
         event.preventDefault();
-        this.setState({title: event.target.value});
+        this.setState({ title: event.target.value });
     }
 
-    handleCreate(event){
+    handleCreate(event) {
         event.preventDefault();
         const todoRequest = {
             title: this.state.title
         }
-        this.todoService.post(todoRequest);
+        this.todoService.post(todoRequest, (data) => this.props.todoList.addTodoList(data));
     }
+
     render() {
         return (
             <div className="inputBlock">
