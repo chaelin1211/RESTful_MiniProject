@@ -19,9 +19,9 @@ export default class TodoInput extends Component {
             title: this.state.title
         }
         this.todoService.post(todoRequest, (data) => this.props.todoList.addTodoList(data));
-        this.setState({title: ''});
+        this.setState({ title: '' });
         event.target.reset();
-    } 
+    }
 
     render() {
         return (
@@ -29,7 +29,9 @@ export default class TodoInput extends Component {
                 <h2 className="topLogo">Todo List</h2>
                 <form className="input-group" onSubmit={this.handleCreate.bind(this)}>
                     <input type="text" onChange={this.handleChange.bind(this)} value={this.state.title} autoFocus className="form-control"></input>
-                    <input className="btn btn-outline-secondary" type="submit" value="Enter"></input>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Enter</button>
+                    </div>                
                 </form>
             </div>
         );
