@@ -15,14 +15,26 @@ export default class TodoInput extends Component {
 
     handleCreate(event) {
         event.preventDefault();
+        if(!this.checkInputValue(this.state.title)){
+            return;
+        }
+
         const todoRequest = {
             title: this.state.title
         }
+
         this.todoService.post(todoRequest, (data) => this.props.todoList.addTodoList(data));
         this.setState({ title: '' });
         event.target.reset();
     }
 
+    checkInputValue(input){
+        if(input === ""){
+            return false;
+        }
+        return true;
+    }
+    
     render() {
         return (
             <div className="inputBlock">
