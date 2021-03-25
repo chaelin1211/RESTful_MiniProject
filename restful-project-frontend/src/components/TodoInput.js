@@ -19,14 +19,16 @@ export default class TodoInput extends Component {
             title: this.state.title
         }
         this.todoService.post(todoRequest, (data) => this.props.todoList.addTodoList(data));
-    }
+        this.setState({title: ''});
+        event.target.reset();
+    } 
 
     render() {
         return (
             <div className="inputBlock">
                 <h2 className="topLogo">Todo List</h2>
                 <form className="input-group" onSubmit={this.handleCreate.bind(this)}>
-                    <input type="text" onChange={this.handleChange.bind(this)} autoFocus className="form-control"></input>
+                    <input type="text" onChange={this.handleChange.bind(this)} value={this.state.title} autoFocus className="form-control"></input>
                     <input className="btn btn-outline-secondary" type="submit" value="Enter"></input>
                 </form>
             </div>
