@@ -23,7 +23,7 @@ export default class TodoInput extends Component {
             title: this.state.title
         }
 
-        this.todoService.post(todoRequest, (data) => this.props.todoList.addTodoList(data));
+        this.todoService.post(todoRequest, (data) => this.props.todoList.addTodoListRow(data));
         this.setState({ title: '' });
         event.target.reset();
     }
@@ -34,7 +34,7 @@ export default class TodoInput extends Component {
         }
         return true;
     }
-    
+
     render() {
         return (
             <div className="inputBlock">
