@@ -17,7 +17,7 @@ export default class TodoList extends Component {
         });
     }
 
-    addTodoList(response) {
+    addTodoListRow(response) {
         this.setState({ todoList: this.state.todoList.concat(response) }
             , console.log(response.data));
     }
