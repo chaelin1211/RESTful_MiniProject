@@ -16,8 +16,8 @@ export default class TodoService {
             });
     }
     delete(request, callback) {
-        const url = 'http://localhost:8080/todo';
-        axios.delete(url, request).then((response) => callback(response.data))
+        const url = 'http://localhost:8080/todo/'+request.id;
+        axios.delete(url).then((response) => callback(response.data))
             .catch(function (error) {
                 console.log(error);
             });
