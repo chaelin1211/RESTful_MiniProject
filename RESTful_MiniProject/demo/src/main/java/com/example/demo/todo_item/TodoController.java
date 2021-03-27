@@ -73,10 +73,10 @@ public class TodoController {
         return TodoAdapter.toTodoResponse(todoBean, errors);
     }
 
-    @RequestMapping(method=RequestMethod.DELETE)
-    public @ResponseBody TodoResponse delete(@RequestBody final TodoRequest todoRequest){
+    @RequestMapping(method=RequestMethod.DELETE, value = "/{id}")
+    public @ResponseBody TodoResponse delete(@PathVariable(value="id") String id){
         List<String> errors = new ArrayList<>();
-        TodoBean todoBean = TodoAdapter.toTodoBean(todoRequest);
+        TodoBean todoBean = todoService.get(id);
         try{
             todoBean = todoService.delete(todoBean);
         }catch(final Exception e){
