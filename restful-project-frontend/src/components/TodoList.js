@@ -22,6 +22,11 @@ export default class TodoList extends Component {
             , console.log(response.data));
     }
 
+    removeTodoListRow(response) {
+        this.setState({ todoList: this.state.todoList.filter((item) => item.data.id !== response.data.id) }
+            , () => {console.log(response.data)});
+    }
+
     setTodoList(todoList) {
         if (this.state.todoList instanceof Array) {
             return this.state.todoList.map(function (object, i) {
