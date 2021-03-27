@@ -22,10 +22,10 @@ export default class TodoList extends Component {
             , console.log(response.data));
     }
 
-    setTodoList() {
+    setTodoList(todoList) {
         if (this.state.todoList instanceof Array) {
             return this.state.todoList.map(function (object, i) {
-                return <TodoListRow item={object.data} key={i} />;
+                return <TodoListRow item={object.data} key={i} todoList={todoList}/>;
             })
         }
     }
@@ -35,7 +35,7 @@ export default class TodoList extends Component {
             <div>
                 <TodoInput todoList={this}></TodoInput>
                 <div className="todoList">
-                    {this.setTodoList()}
+                    {this.setTodoList(this)}
                 </div>
             </div>
         )
