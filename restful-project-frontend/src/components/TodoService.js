@@ -8,6 +8,13 @@ export default class TodoService {
                 console.log(e);
             });
     }
+    get(request, callback) {
+        const url = 'http://localhost:8080/todo/'+request.id;
+        axios.get(url).then((response) => callback(response.data))
+            .catch(e => {
+                console.log(e);
+            });
+    }
     post(request, callback) {
         const url = 'http://localhost:8080/todo';
         axios.post(url, request).then((response) => callback(response.data))
