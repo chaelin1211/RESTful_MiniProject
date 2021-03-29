@@ -22,4 +22,11 @@ export default class TodoService {
                 console.log(error);
             });
     }
+    update(request, callback) {
+        const url = 'http://localhost:8080/todo';
+        axios.patch(url, request).then((response) => callback(response.data))
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 }
