@@ -30,7 +30,7 @@ export default class TodoList extends Component {
     setTodoList(todoList) {
         if (this.state.todoList instanceof Array) {
             return this.state.todoList.map(function (object, i) {
-                return <TodoListRow item={object.data} key={i} todoList={todoList}/>;
+                return <TodoListRow id={object.data.id} todoList={todoList}/>;
             })
         }
     }
