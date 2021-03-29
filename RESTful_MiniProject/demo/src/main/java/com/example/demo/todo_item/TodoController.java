@@ -60,7 +60,7 @@ public class TodoController {
         return TodoAdapter.toTodoResponse(todoBean, errors);
     }
     
-    @RequestMapping(method=RequestMethod.PUT)
+    @RequestMapping(method=RequestMethod.PATCH)
     public @ResponseBody TodoResponse update(@RequestBody final TodoRequest todoRequest){
         List<String> errors = new ArrayList<>();
         TodoBean todoBean = TodoAdapter.toTodoBean(todoRequest);
