@@ -5,11 +5,24 @@ export default class TodoListRow extends Component {
   constructor(props) {
     super(props);
     this.todoService = new TodoService();
+    this.state = {
+      title: "",
+      done: ""
+    }
+    this.setData();
+  }
+
+  setData() {
+    const todoRequest = {
+      id: this.props.id
+    }
+
+    this.todoService.get(todoRequest, (item) => this.setState({ title: item.data.title, done: item.data.done }, console.log(item)));
   }
 
   handleClick() {
     const todoRequest = {
-      id: this.props.item.id
+      id: this.props.id
     }
 
     this.todoService.delete(todoRequest, (data) => this.props.todoList.removeTodoListRow(data));
@@ -36,7 +49,7 @@ export default class TodoListRow extends Component {
           }
         </span>
         {/* todo item title */}
-        <input className="todoTitle d-inline" value={this.props.item.title} readonly id="title"></input>
+        <input className="todoTitle d-inline" value={this.state.title} readonly id="title"></input>
 
         {/* 삭제 버튼 */}
         <div className="float-right deleteButton" onClick={this.handleClick.bind(this)}>
