@@ -28,6 +28,16 @@ export default class TodoListRow extends Component {
     this.todoService.delete(todoRequest, (data) => this.props.todoList.removeTodoListRow(data));
   }
 
+  handleCheck() {
+    const todoRequest = {
+      id: this.props.id,
+      done: !this.state.done,
+      title: this.state.title
+    }
+
+    this.todoService.update(todoRequest, (item) => this.setState({ title: item.data.title, done: item.data.done }, console.log(item)));
+  }
+
   render() {
     return (
       <div className="todoRow">
