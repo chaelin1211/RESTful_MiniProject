@@ -26,6 +26,11 @@ export default class TodoListRow extends Component {
     this.todoService.get(todoRequest, (item) => this.setState({ title: item.data.title, done: item.data.done }, console.log(item)));
   }
 
+  handleChange(event) {
+    event.preventDefault();
+    this.setState({ title: event.target.value });
+  }
+
   handleClick() {
     const todoRequest = {
       id: this.props.id
@@ -64,9 +69,10 @@ export default class TodoListRow extends Component {
               </span>
           }
         </span>
+
         {/* todo item title */}
         <span className="todoTitle">
-          <input className="border-0" value={this.state.title} id="title"></input>
+          <input className="border-0" onChange={this.handleChange.bind(this)} value={this.state.title} id="title"></input>
         </span>
 
         {/* 삭제 버튼 */}
