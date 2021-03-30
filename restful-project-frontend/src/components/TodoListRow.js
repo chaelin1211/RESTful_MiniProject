@@ -59,7 +59,9 @@ export default class TodoListRow extends Component {
           }
         </span>
         {/* todo item title */}
-        <input className="todoTitle d-inline" value={this.state.title} readonly id="title"></input>
+        <span className="todoTitle">
+          <input className="border-0" value={this.state.title} id="title"></input>
+        </span>
 
         {/* 삭제 버튼 */}
         <div className="float-right deleteButton" onClick={this.handleClick.bind(this)}>
