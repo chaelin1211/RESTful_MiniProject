@@ -35,7 +35,7 @@ export default class TodoListRow extends Component {
       title: this.state.title
     }
 
-    this.todoService.update(todoRequest, (item) => this.setState({ title: item.data.title, done: item.data.done }, console.log(item)));
+    this.todoService.update(todoRequest, (item) => this.setState({ done: item.data.done }, console.log(item)));
   }
 
   render() {
