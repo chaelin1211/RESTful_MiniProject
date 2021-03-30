@@ -12,6 +12,12 @@ export default class TodoListRow extends Component {
     this.setData();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.id !== prevProps.id) {
+      this.setData();
+    }
+  }
+
   setData() {
     const todoRequest = {
       id: this.props.id
