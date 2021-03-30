@@ -17,12 +17,13 @@ body{
 }
 
 .todoRow{
-  padding: 15px 30px;
+  padding: 15px 15px;
   border-bottom: 1px solid lightgray;
 }
 
 .todoTitle{
   padding-left: 10px;
+  border: none;
 }
 
 .inputBlock{
@@ -31,4 +32,28 @@ body{
 
 .topLogo {
   text-align: center;
+}
+
+.deleteButton{
+  padding: 0px 10px;
+  color: darkgray;
+}
+
+.deleteButton :hover{
+  color: black;
+}
+
+.unCheckBox{
+  color: black;
+}
+.unCheckBox:hover{
+  color: rgb(55, 128, 197);
+}
+
+.checkedBox{
+  color: rgb(55, 128, 197);
+}
+
+.checkedBox:hover{
+  color: black;
 }
