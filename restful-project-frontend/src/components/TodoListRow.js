@@ -39,6 +39,28 @@ export default class TodoListRow extends Component {
     this.todoService.delete(todoRequest, (data) => this.props.todoList.removeTodoListRow(data));
   }
 
+  updateTitle() {
+    if (!this.checkInputValue(this.state.title)) {
+      this.setData();
+      return;
+    }
+
+    const todoRequest = {
+      id: this.props.id,
+      done: this.state.done,
+      title: this.state.title
+    }
+
+    this.todoService.update(todoRequest, (item) => this.setState({ titld: item.data.title, done: item.data.done }, console.log(item)));
+  }
+
+  checkInputValue(input) {
+    if (input === "") {
+      return false;
+    }
+    return true;
+  }
+
   handleCheck() {
     const todoRequest = {
       id: this.props.id,
@@ -72,7 +94,7 @@ export default class TodoListRow extends Component {
 
         {/* todo item title */}
         <span className="todoTitle">
-          <input className="border-0" onChange={this.handleChange.bind(this)} value={this.state.title} id="title"></input>
+          <input className="border-0" onChange={this.handleChange.bind(this)} onBlur={this.updateTitle.bind(this)} value={this.state.title} id="title"></input>
         </span>
 
         {/* 삭제 버튼 */}
