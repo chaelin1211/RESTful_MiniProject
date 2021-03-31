@@ -10,6 +10,9 @@ export default class TodoListRow extends Component {
       done: ""
     }
     this.setData();
+    this.todoTitle = {
+      border: "none"
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -67,11 +70,12 @@ export default class TodoListRow extends Component {
       done: !this.state.done,
       title: this.state.title
     }
-
-    this.todoService.update(todoRequest, (item) => this.setState({ done: item.data.done }, console.log(item)));
+    this.setData();
+    this.todoService.update(todoRequest, (item) => this.props.todoList.initList());
   }
 
   render() {
+
     return (
       <div className="todoRow">
         {/* 체크박스 */}
@@ -93,9 +97,11 @@ export default class TodoListRow extends Component {
         </span>
 
         {/* todo item title */}
-        <span className="todoTitle">
-          <input className="border-0" onChange={this.handleChange.bind(this)} onBlur={this.updateTitle.bind(this)} value={this.state.title} id="title"></input>
-        </span>
+        <span className="todoTitle"> {
+          this.state.done
+            ? <input style={{ textDecoration: 'line-through', color: 'gray' }} onChange={this.handleChange.bind(this)} onBlur={this.updateTitle.bind(this)} value={this.state.title} id="title"></input>
+            : <input onChange={this.handleChange.bind(this)} onBlur={this.updateTitle.bind(this)} value={this.state.title} id="title"></input>
+        }</span>
 
         {/* 삭제 버튼 */}
         <div className="float-right deleteButton" onClick={this.handleClick.bind(this)}>
