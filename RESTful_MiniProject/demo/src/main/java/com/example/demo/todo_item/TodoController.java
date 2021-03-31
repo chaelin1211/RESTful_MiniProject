@@ -11,6 +11,8 @@ import java.util.List;
 import javax.management.RuntimeErrorException;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,6 +41,20 @@ public class TodoController {
         List<String> errors = new ArrayList<>();
         List<TodoBean> todoBeans = todoService.getAll();
         List<TodoResponse> todoResponses = new ArrayList<TodoResponse>();
+
+        // Done이 true인 경우 목록의 뒤로 정렬
+        todoBeans.sort(new Comparator<TodoBean>(){
+            @Override
+            public int compare(TodoBean o1, TodoBean o2) {
+                if(o1.isDone() && !o2.isDone()){
+                    return 1;
+                }
+                else if(!o1.isDone() && o2.isDone()){
+                    return -1;
+                }
+                return 0;
+            }
+        });
 
         todoBeans.stream().forEach(todoBean->{
             // todobean 각각을 adapter를 통해 response로 만들어 저장
