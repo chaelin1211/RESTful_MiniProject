@@ -23,6 +23,9 @@ body{
 
 .todoTitle{
   padding-left: 10px;
+}
+
+.todoTitle input{
   border: none;
 }
 
