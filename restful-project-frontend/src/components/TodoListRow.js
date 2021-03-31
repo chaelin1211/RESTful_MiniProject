@@ -10,9 +10,6 @@ export default class TodoListRow extends Component {
       done: ""
     }
     this.setData();
-    this.todoTitle = {
-      border: "none"
-    }
   }
 
   componentDidUpdate(prevProps, prevState) {
