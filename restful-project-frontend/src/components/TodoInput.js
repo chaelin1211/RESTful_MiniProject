@@ -23,7 +23,7 @@ export default class TodoInput extends Component {
             title: this.state.title
         }
 
-        this.todoService.post(todoRequest, (data) => this.props.todoList.addTodoListRow(data));
+        this.todoService.post(todoRequest, (data) => this.props.todoList.initList());
         this.setState({ title: '' });
         event.target.reset();
     }
